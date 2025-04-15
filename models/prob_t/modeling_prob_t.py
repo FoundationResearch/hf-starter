@@ -270,7 +270,7 @@ class ProbTModel(ProbTPreTrainedModel):
             
         # 准备attention mask
         extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
-        extended_attention_mask = (1.0 - extended_attention_mask) * torch.finfo(inputs_embeds.dtype).min
+        extended_attention_mask = (~extended_attention_mask) * torch.finfo(inputs_embeds.dtype).min
         
         hidden_states = inputs_embeds
         
